@@ -1,0 +1,67 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://assets/misc/water_drop.png" type="Texture" id=6]
+
+[node name="Rain" type="Node2D"]
+position = Vector2( 128, -32 )
+z_index = 1
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+position = Vector2( 816, -360 )
+amount = 512
+lifetime = 4.0
+preprocess = 8.0
+speed_scale = 3.0
+fixed_fps = 20
+texture = ExtResource( 6 )
+emission_shape = 2
+emission_rect_extents = Vector2( 800, 40 )
+direction = Vector2( -2, 1 )
+spread = 25.0
+initial_velocity = 250.0
+angle = -45.0
+
+[node name="CPUParticles2D2" type="CPUParticles2D" parent="."]
+position = Vector2( 2408, -384 )
+amount = 512
+lifetime = 4.0
+preprocess = 8.0
+speed_scale = 3.0
+fixed_fps = 20
+texture = ExtResource( 6 )
+emission_shape = 2
+emission_rect_extents = Vector2( 800, 40 )
+direction = Vector2( -2, 1 )
+spread = 25.0
+initial_velocity = 250.0
+angle = -45.0
+
+[node name="CPUParticles2D3" type="CPUParticles2D" parent="."]
+position = Vector2( 3720, -360 )
+amount = 512
+lifetime = 4.0
+preprocess = 8.0
+speed_scale = 3.0
+fixed_fps = 20
+texture = ExtResource( 6 )
+emission_shape = 2
+emission_rect_extents = Vector2( 800, 40 )
+direction = Vector2( -2, 1 )
+spread = 25.0
+initial_velocity = 250.0
+angle = -45.0
+
+[node name="CPUParticles2D4" type="CPUParticles2D" parent="."]
+position = Vector2( 5312, -384 )
+amount = 512
+lifetime = 4.0
+preprocess = 8.0
+speed_scale = 3.0
+fixed_fps = 20
+texture = ExtResource( 6 )
+emission_shape = 2
+emission_rect_extents = Vector2( 800, 40 )
+direction = Vector2( -2, 1 )
+spread = 25.0
+initial_velocity = 250.0
+angle = -45.0

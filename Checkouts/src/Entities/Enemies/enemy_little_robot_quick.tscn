@@ -1,0 +1,121 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://src/Scripts/AI/Roomba.gd" type="Script" id=1]
+[ext_resource path="res://assets/particles/Smoke_particle1.png" type="Texture" id=2]
+[ext_resource path="res://src/Entities/Enemies/Skins/little_robot_quick.tres" type="SpriteFrames" id=4]
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 40.0557, 11.9604 )
+
+[sub_resource type="Animation" id=3]
+length = 0.25
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:modulate")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.25 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 0.529412, 0.00784314, 0.00784314, 0.215686 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.25 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "killed"
+} ]
+}
+
+[sub_resource type="Animation" id=4]
+length = 0.25
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:modulate")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.25 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 0.529412, 0.00784314, 0.00784314, 0.215686 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[node name="LittleRobotQuick" type="KinematicBody2D"]
+collision_layer = 8
+collision_mask = 22
+script = ExtResource( 1 )
+run_vel_mult = 5.0
+skin = ExtResource( 4 )
+
+[node name="Sprite" type="AnimatedSprite" parent="."]
+position = Vector2( 0.0132446, -20.1731 )
+frames = ExtResource( 4 )
+animation = "attack"
+
+[node name="RunParticles" type="CPUParticles2D" parent="Sprite"]
+modulate = Color( 0.607843, 0.752941, 0.784314, 1 )
+position = Vector2( 3.30356, 24.7767 )
+emitting = false
+amount = 6
+lifetime = 2.0
+speed_scale = 2.0
+texture = ExtResource( 2 )
+emission_shape = 1
+emission_sphere_radius = 4.0
+direction = Vector2( 1.5, -1 )
+spread = 25.0
+gravity = Vector2( 0, 0 )
+initial_velocity = 25.0
+
+[node name="CryParticles" type="CPUParticles2D" parent="Sprite"]
+modulate = Color( 0.180392, 0.823529, 0.960784, 1 )
+position = Vector2( -12.6448, 6.63804 )
+emitting = false
+amount = 3
+lifetime = 2.0
+speed_scale = 2.0
+texture = ExtResource( 2 )
+emission_shape = 2
+emission_rect_extents = Vector2( 15, 1 )
+direction = Vector2( 1.5, -1 )
+spread = 25.0
+gravity = Vector2( 0, 0 )
+initial_velocity = 25.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0.0132446, -0.173096 )
+shape = SubResource( 2 )
+
+[node name="PlayerDetection" type="Area2D" parent="."]
+visible = false
+position = Vector2( -0.222725, -0.120403 )
+collision_layer = 8
+collision_mask = 33
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="PlayerDetection"]
+shape = SubResource( 2 )
+
+[node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
+visible = false
+position = Vector2( -0.779541, -0.152275 )
+scale = Vector2( 1.65, 0.505 )
+rect = Rect2( -25, -25, 50, 50 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/death = SubResource( 3 )
+anims/hurt = SubResource( 4 )
+
+[node name="Tween" type="Tween" parent="."]

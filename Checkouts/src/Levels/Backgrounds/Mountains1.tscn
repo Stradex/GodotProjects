@@ -1,0 +1,92 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://assets/backgrounds/mountains_back1/background2.png" type="Texture" id=1]
+[ext_resource path="res://assets/backgrounds/mountains_back1/background1.png" type="Texture" id=2]
+[ext_resource path="res://assets/backgrounds/mountains_back1/background5.png" type="Texture" id=3]
+[ext_resource path="res://assets/backgrounds/mountains_back1/background4.png" type="Texture" id=4]
+[ext_resource path="res://assets/backgrounds/mountains_back1/background3.png" type="Texture" id=5]
+[ext_resource path="res://assets/misc/water_drop.png" type="Texture" id=6]
+
+[node name="Mountains1" type="ParallaxBackground"]
+__meta__ = {
+"_edit_horizontal_guides_": [ 599.784 ]
+}
+
+[node name="back2" type="Sprite" parent="."]
+z_index = -50
+texture = ExtResource( 2 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 0, 0, 1280, 720 )
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="."]
+motion_mirroring = Vector2( 1280, 720 )
+
+[node name="back1" type="Sprite" parent="ParallaxLayer"]
+z_index = -50
+texture = ExtResource( 2 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 0, 0, 1280, 720 )
+
+[node name="Back2" type="ParallaxLayer" parent="."]
+position = Vector2( 0.446366, -0.141138 )
+motion_scale = Vector2( 0.2, 0.2 )
+motion_mirroring = Vector2( 1280, 250 )
+
+[node name="Sprite" type="Sprite" parent="Back2"]
+texture = ExtResource( 1 )
+centered = false
+
+[node name="Back3" type="ParallaxLayer" parent="."]
+position = Vector2( 0.446366, -0.141138 )
+motion_scale = Vector2( 0.4, 0.2 )
+motion_mirroring = Vector2( 1280, 350 )
+
+[node name="Sprite" type="Sprite" parent="Back3"]
+texture = ExtResource( 5 )
+centered = false
+
+[node name="Back4" type="ParallaxLayer" parent="."]
+position = Vector2( 0.446366, -0.141138 )
+motion_scale = Vector2( 0.6, 0.4 )
+motion_offset = Vector2( 0, -150 )
+motion_mirroring = Vector2( 1280, 0 )
+
+[node name="Sprite" type="Sprite" parent="Back4"]
+texture = ExtResource( 4 )
+centered = false
+
+[node name="rain" type="ParallaxLayer" parent="."]
+visible = false
+z_index = 100
+motion_scale = Vector2( 0.4, 0.4 )
+motion_mirroring = Vector2( 1280, 400 )
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="rain"]
+position = Vector2( 503.181, -5.99144 )
+amount = 512
+lifetime = 5.0
+preprocess = 6.0
+speed_scale = 2.5
+fixed_fps = 15
+texture = ExtResource( 6 )
+emission_shape = 2
+emission_rect_extents = Vector2( 800, 40 )
+direction = Vector2( -0.5, 1 )
+spread = 25.0
+initial_velocity = 100.0
+angle = -45.0
+
+[node name="Back5" type="ParallaxLayer" parent="."]
+position = Vector2( 0.446366, -0.141138 )
+motion_scale = Vector2( 0.8, 0.4 )
+motion_offset = Vector2( 0, -150 )
+motion_mirroring = Vector2( 1280, 0 )
+
+[node name="Sprite" type="Sprite" parent="Back5"]
+texture = ExtResource( 3 )
+centered = false
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color( 0.780392, 0.780392, 0.780392, 1 )

@@ -1,0 +1,28 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://src/Scripts/DefaultLevel.gd" type="Script" id=1]
+[ext_resource path="res://src/Entities/PlayerSpawn.tscn" type="PackedScene" id=8]
+
+[node name="DefaultLevel" type="Node2D"]
+modulate = Color( 0.811765, 0.811765, 0.811765, 1 )
+script = ExtResource( 1 )
+map_limit_end = Vector2( 1024, 2000 )
+
+[node name="Tiles" type="Node2D" parent="."]
+position = Vector2( 256, 320 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Entities" type="Node2D" parent="."]
+z_index = 2
+
+[node name="Cameras" type="Node2D" parent="."]
+position = Vector2( 384, 376 )
+
+[node name="PlayerSpawn" parent="." instance=ExtResource( 8 )]
+position = Vector2( 192, 384 )
+z_index = 3
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color( 0.819608, 0.819608, 0.819608, 1 )

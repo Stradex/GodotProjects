@@ -1,0 +1,97 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://src/Entities/Misc/LightEntity.tscn" type="PackedScene" id=1]
+[ext_resource path="res://src/Entities/Misc/ElevatorTwoDoors.gd" type="Script" id=2]
+[ext_resource path="res://assets/lightmaps/radiuslight2.png" type="Texture" id=3]
+[ext_resource path="res://src/Entities/Misc/Doors/WoodenDoor.tscn" type="PackedScene" id=4]
+[ext_resource path="res://src/Entities/Misc/TriggerEntity.tscn" type="PackedScene" id=5]
+[ext_resource path="res://src/Entities/Misc/ElevatorButton.tscn" type="PackedScene" id=6]
+[ext_resource path="res://src/Tiles/game_tiles.tres" type="TileSet" id=7]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 128, 96 )
+
+[sub_resource type="OccluderPolygon2D" id=2]
+closed = false
+cull_mode = 2
+polygon = PoolVector2Array( -160, -64, -160, -128, 160, -128, 160, -64, 224, -64, 224, -192, -224, -192, -224, -64 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 32, 32 )
+
+[node name="ElevatorTwoDoors" type="KinematicBody2D"]
+collision_layer = 4
+collision_mask = 2147483649
+script = ExtResource( 2 )
+
+[node name="nonsolid_back" type="TileMap" parent="."]
+position = Vector2( -416, -320 )
+tile_set = ExtResource( 7 )
+collision_layer = 0
+collision_mask = 0
+format = 1
+tile_data = PoolIntArray( 131077, 51, 0, 196612, 1, 0, 196613, 1, 0, 196614, 1, 0, 196615, 1, 0, 196616, 1, 0, 262147, 1, 0, 262148, 1, 0, 262149, 1, 0, 262150, 1, 0, 262151, 1, 0, 262152, 1, 0, 262153, 1, 0, 327683, 1, 0, 327684, 1, 0, 327685, 1, 0, 327686, 1, 0, 327687, 1, 0, 327688, 1, 0, 327689, 1, 0, 393219, 1, 0, 393220, 1, 0, 393221, 1, 0, 393222, 1, 0, 393223, 1, 0, 393224, 1, 0, 393225, 1, 0 )
+
+[node name="walls" type="TileMap" parent="."]
+position = Vector2( -416, -320 )
+tile_set = ExtResource( 7 )
+collision_layer = 0
+collision_mask = 0
+format = 1
+tile_data = PoolIntArray( 131075, 536870944, 0, 131076, 1610612766, 0, 131077, 1610612766, 0, 131078, 1610612766, 0, 131079, 1610612766, 0, 131080, 1610612766, 0, 131081, 32, 0, 196611, -1073741794, 0, 196617, -1610612706, 0, 458755, 3, 0, 458756, 3, 0, 458757, 3, 0, 458758, 3, 0, 458759, 3, 0, 458760, 3, 0, 458761, 3, 0 )
+
+[node name="nonsolid1" type="TileMap" parent="."]
+position = Vector2( -416, -320 )
+tile_set = ExtResource( 7 )
+collision_layer = 0
+collision_mask = 0
+format = 1
+tile_data = PoolIntArray( 131077, 1610612742, 0, 131078, 1610612742, 0, 131079, 1610612742, 0, 196612, -1073741804, 0, 458756, 4, 0, 458757, 4, 0, 458758, 4, 0, 458759, 4, 0, 458760, 4, 0 )
+
+[node name="Trigger" parent="." instance=ExtResource( 5 )]
+node_caller = "$Parent"
+call_function_enter = "_on_player_enter"
+call_function_exit = "_on_player_leave"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Trigger"]
+shape = SubResource( 1 )
+
+[node name="Position2D" type="Position2D" parent="."]
+position = Vector2( 0, 128 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PoolVector2Array( 160, -64, 160, -128, -160, -128, -160, -64, -224, -64, -224, -192, 224, -192, 224, -64 )
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="."]
+polygon = PoolVector2Array( -224, 128, 224, 128, 224, 192, -224, 192 )
+
+[node name="Light" type="Node2D" parent="."]
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="Light"]
+occluder = SubResource( 2 )
+
+[node name="LightEntity" parent="Light" instance=ExtResource( 1 )]
+position = Vector2( 0, 46 )
+scale = Vector2( 2, 3.78125 )
+texture = ExtResource( 3 )
+color = Color( 0.67451, 0.929412, 0.933333, 1 )
+shadow_enabled = true
+
+[node name="ElevatorButton" parent="." instance=ExtResource( 6 )]
+position = Vector2( -1, 0 )
+node_caller = "$Parent"
+wait_time = 5.0
+call_function = "move_to_next_floor"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ElevatorButton"]
+shape = SubResource( 3 )
+
+[node name="Door" parent="." instance=ExtResource( 4 )]
+position = Vector2( -160, 32 )
+manual = false
+trigger_only = true
+
+[node name="Door2" parent="." instance=ExtResource( 4 )]
+position = Vector2( 216, 32 )
+manual = false
+trigger_only = true

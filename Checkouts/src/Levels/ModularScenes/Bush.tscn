@@ -1,0 +1,25 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://src/Tiles/game_tiles.tres" type="TileSet" id=1]
+
+[node name="Bush" type="Node2D"]
+
+[node name="fence" type="TileMap" parent="."]
+tile_set = ExtResource( 1 )
+collision_layer = 0
+collision_mask = 0
+format = 1
+tile_data = PoolIntArray( 327680, 38, 0, 327681, 38, 0, 327682, 38, 0, 327683, 38, 0, 327684, 38, 0, 393216, 1073741882, 0, 393217, 1073741882, 0, 393220, 1073741882, 0 )
+
+[node name="bush" type="TileMap" parent="."]
+tile_set = ExtResource( 1 )
+collision_layer = 0
+collision_mask = 0
+format = 1
+tile_data = PoolIntArray( 327682, 55, 0, 458752, 54, 0, 458753, 54, 0, 524288, 53, 0, 524289, 53, 0, 524290, 53, 0, 524291, 53, 0, 524292, 53, 0 )
+
+[node name="solidfloor" type="TileMap" parent="."]
+tile_set = ExtResource( 1 )
+collision_layer = 2
+format = 1
+tile_data = PoolIntArray( 524288, 1610612744, 0, 524289, 1610612744, 0, 524290, 1610612744, 0, 524291, 1610612744, 0, 524292, 1610612744, 0 )

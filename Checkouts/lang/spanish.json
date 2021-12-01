@@ -1,0 +1,34 @@
+{
+	//Main menu
+	"str0001":	"NUEVA PARTIDA",
+	"str0002": 	"CARGAR PARTIDA",
+	"str0003":	"GUARDAR PARTIDA",
+	"str0004":	"OPCIONES",
+	"str0005":	"SALIR DEL JUEGO",
+	"str0006":	"PANTALLA COMPLETA",
+	"str0007":	"RESOLUCIÓN",
+	"str0008":	"APLICAR CAMBIOS",
+	"str0009":	"IDIOMA",
+	"str0010":	"MULTIJUGADOR",
+	"str0011":	"CONFIG. DEL SERVIDOR",
+	"str0012":	"LÍMITE DE JUGADORES",
+	"str0013":	"INICIAR SERVIDOR",
+	"str0014":	"CONFIG. DEL CLIENTE",
+	"str0015":	"UNIRSE AL SERVIDOR",
+	//GUI
+	"str0100": 	"VIDA",
+	"str0101":	"Continuar",
+	//Specific in-game strings
+	"str1000":	"Algo no está bien aquí...",
+	"str1001":	"......?",
+	"str1002":	"Nada como un poco de aire fresco.",
+	"str1003":	"%s fue asesinado por un %s",
+	"str1004": 	"Nivel de seguridad actualizado a nivel %d",
+	"str1005": 	"USAR",
+	"str1006": 	"No estás autorizado a abrir esta puerta.",
+	//PDAS
+	"pda0001_head": "From:Maxi\nTo:Matthew\nDate:21/12/2020",
+	"pda0001_msg": "This is a message for you Matthew <3.\n\nPD: I want to play Doom 3 wuaaa",
+	"pda0002_head": "From:Maxi\nTo:Matthew\nDate:21/12/2020",
+	"pda0002_msg": "I WAAANT PIZZA GUAAAAAA, GUAAAA.\nPizza pizza pizza!, matthew nyo"
+}

@@ -1,0 +1,49 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://src/Scripts/Misc/StaticEntities/ServerMachine.gd" type="Script" id=1]
+[ext_resource path="res://assets/misc/static_entities/server.png" type="Texture" id=2]
+[ext_resource path="res://assets/misc/static_entities/server_lights.png" type="Texture" id=3]
+
+[sub_resource type="CanvasItemMaterial" id=1]
+blend_mode = 1
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 64, 128 )
+
+[sub_resource type="Animation" id=3]
+length = 2.0
+loop = true
+step = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("Lights:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 1, 1.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3 ]
+}
+
+[node name="ServerMachine" type="StaticBody2D"]
+position = Vector2( 64, -128 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="BaseSprite" type="Sprite" parent="."]
+texture = ExtResource( 2 )
+
+[node name="Lights" type="Sprite" parent="."]
+material = SubResource( 1 )
+texture = ExtResource( 3 )
+hframes = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 2 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/lights = SubResource( 3 )

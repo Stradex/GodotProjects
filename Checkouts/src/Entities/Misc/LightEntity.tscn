@@ -1,0 +1,44 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://assets/lightmaps/radiuslight1.png" type="Texture" id=1]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends Light2D
+
+export var light_broken: bool = false;
+var default_energy: float;
+
+func _ready():
+	$LightIcon.hide(); #Show only in the editor so we can see it
+	default_energy = self.energy;
+	update_light();
+
+func update_light():
+	if light_broken:
+		if !$Timer.is_connected(\"timeout\", self, \"_on_Timeout\"):
+			$Timer.connect(\"timeout\", self, \"_on_Timeout\");
+		$Timer.start();
+	else:
+		if $Timer.is_connected(\"timeout\", self, \"_on_Timeout\"):
+			$Timer.disconnect(\"timeout\", self, \"_on_Timeout\");
+		$Timer.stop();
+
+func set_light_broken(broken: bool):
+	light_broken = broken;
+	update_light();
+
+func _on_Timeout():
+	$Timer.wait_time = rand_range(0.085, 0.25);
+	if self.energy < default_energy:
+		self.energy = default_energy;
+	else:
+		self.energy = 0.0;
+"
+
+[node name="LightEntity" type="Light2D"]
+texture = ExtResource( 1 )
+script = SubResource( 1 )
+
+[node name="LightIcon" type="Sprite" parent="."]
+
+[node name="Timer" type="Timer" parent="."]

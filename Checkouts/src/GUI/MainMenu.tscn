@@ -1,0 +1,691 @@
+[gd_scene load_steps=15 format=2]
+
+[ext_resource path="res://assets/ui/main_menu/background_menu.png" type="Texture" id=1]
+[ext_resource path="res://assets/fonts/PixelOperator-Bold.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://assets/ui/main_menu/button_on.png" type="Texture" id=3]
+[ext_resource path="res://assets/ui/main_menu/button_pressed.png" type="Texture" id=4]
+[ext_resource path="res://assets/ui/main_menu/button_out.png" type="Texture" id=5]
+[ext_resource path="res://src/Scripts/GUI/MainMenu.gd" type="Script" id=6]
+[ext_resource path="res://assets/ui/main_menu/options_menu.png" type="Texture" id=7]
+[ext_resource path="res://assets/fonts/PixelOperator.ttf" type="DynamicFontData" id=8]
+[ext_resource path="res://src/Animations/mainmenu/show_options.tres" type="Animation" id=9]
+
+[sub_resource type="ButtonGroup" id=1]
+resource_name = "MenuButtons"
+
+[sub_resource type="DynamicFont" id=2]
+size = 25
+font_data = ExtResource( 2 )
+
+[sub_resource type="StyleBoxTexture" id=3]
+texture = ExtResource( 7 )
+region_rect = Rect2( 0, 0, 969, 612 )
+
+[sub_resource type="DynamicFont" id=4]
+size = 22
+font_data = ExtResource( 8 )
+
+[sub_resource type="Animation" id=5]
+resource_name = "hide_options"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("OptionsContainer:rect_position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 288, 32 ), Vector2( 1000, 32 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("OptionsContainer:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+
+[node name="MainMenu" type="CanvasLayer"]
+pause_mode = 2
+layer = 64
+script = ExtResource( 6 )
+__meta__ = {
+"_edit_horizontal_guides_": [ -32.0, 576.0 ],
+"_edit_vertical_guides_": [ -32.0, 992.0 ]
+}
+
+[node name="BackgroundImage" type="TextureRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 1 )
+expand = true
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Buttons" type="VBoxContainer" parent="."]
+margin_left = 32.0
+margin_top = 32.0
+margin_right = 242.0
+margin_bottom = 288.0
+custom_constants/separation = 12
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="NewGame" type="TextureButton" parent="Buttons"]
+margin_right = 210.0
+margin_bottom = 55.0
+focus_next = NodePath("../LoadGame")
+focus_previous = NodePath("../../QuitGame/QuitGame")
+group = SubResource( 1 )
+texture_normal = ExtResource( 5 )
+texture_pressed = ExtResource( 4 )
+texture_hover = ExtResource( 3 )
+texture_focused = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ButtonLabel" type="Label" parent="Buttons/NewGame"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_fonts/font = SubResource( 2 )
+text = "NEW GAME"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Multiplayer" type="TextureButton" parent="Buttons"]
+margin_top = 67.0
+margin_right = 210.0
+margin_bottom = 122.0
+focus_next = NodePath("../SaveGame")
+focus_previous = NodePath("../NewGame")
+group = SubResource( 1 )
+texture_normal = ExtResource( 5 )
+texture_pressed = ExtResource( 4 )
+texture_hover = ExtResource( 3 )
+texture_focused = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ButtonLabel" type="Label" parent="Buttons/Multiplayer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -3.0
+margin_bottom = -3.0
+custom_fonts/font = SubResource( 2 )
+text = "MULTIPLAYER"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SaveGame" type="TextureButton" parent="Buttons"]
+visible = false
+margin_top = 134.0
+margin_right = 210.0
+margin_bottom = 189.0
+focus_next = NodePath("../Options")
+focus_previous = NodePath("../LoadGame")
+group = SubResource( 1 )
+texture_normal = ExtResource( 5 )
+texture_pressed = ExtResource( 4 )
+texture_hover = ExtResource( 3 )
+texture_focused = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ButtonLabel" type="Label" parent="Buttons/SaveGame"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_fonts/font = SubResource( 2 )
+text = "SAVE GAME"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Options" type="TextureButton" parent="Buttons"]
+margin_top = 134.0
+margin_right = 210.0
+margin_bottom = 189.0
+focus_next = NodePath("../../QuitGame/QuitGame")
+focus_previous = NodePath("../SaveGame")
+group = SubResource( 1 )
+texture_normal = ExtResource( 5 )
+texture_pressed = ExtResource( 4 )
+texture_hover = ExtResource( 3 )
+texture_focused = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ButtonLabel" type="Label" parent="Buttons/Options"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_fonts/font = SubResource( 2 )
+text = "OPTIONS"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="QuitGame" type="VBoxContainer" parent="."]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = 32.0
+margin_top = -92.0
+margin_right = 242.0
+margin_bottom = -28.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="QuitGame" type="TextureButton" parent="QuitGame"]
+margin_right = 210.0
+margin_bottom = 55.0
+focus_next = NodePath("../../Buttons/NewGame")
+focus_previous = NodePath("../../Buttons/Options")
+group = SubResource( 1 )
+texture_normal = ExtResource( 5 )
+texture_pressed = ExtResource( 4 )
+texture_hover = ExtResource( 3 )
+texture_focused = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ButtonLabel" type="Label" parent="QuitGame/QuitGame"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_fonts/font = SubResource( 2 )
+text = "QUIT GAME"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="OptionsContainer" type="PanelContainer" parent="."]
+margin_left = 288.0
+margin_top = 32.0
+margin_right = 928.0
+margin_bottom = 384.0
+custom_styles/panel = SubResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="OptionsMenu" type="Control" parent="OptionsContainer"]
+visible = false
+margin_right = 640.0
+margin_bottom = 352.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="OptionsContainer/OptionsMenu"]
+margin_left = 32.0
+margin_top = 32.0
+margin_right = 608.0
+margin_bottom = 288.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="FullScreen" type="HBoxContainer" parent="OptionsContainer/OptionsMenu/VBoxContainer"]
+margin_right = 576.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 0, 32 )
+
+[node name="Label" type="Label" parent="OptionsContainer/OptionsMenu/VBoxContainer/FullScreen"]
+margin_top = 3.0
+margin_right = 150.0
+margin_bottom = 29.0
+rect_min_size = Vector2( 150, 0 )
+custom_fonts/font = SubResource( 2 )
+text = "FULLSCREEN:"
+
+[node name="FullScreenCheckBox" type="CheckBox" parent="OptionsContainer/OptionsMenu/VBoxContainer/FullScreen"]
+margin_left = 154.0
+margin_right = 178.0
+margin_bottom = 32.0
+align = 1
+
+[node name="Resolutions" type="HBoxContainer" parent="OptionsContainer/OptionsMenu/VBoxContainer"]
+margin_top = 36.0
+margin_right = 576.0
+margin_bottom = 68.0
+rect_min_size = Vector2( 0, 32 )
+
+[node name="Label" type="Label" parent="OptionsContainer/OptionsMenu/VBoxContainer/Resolutions"]
+margin_top = 3.0
+margin_right = 150.0
+margin_bottom = 29.0
+rect_min_size = Vector2( 150, 0 )
+custom_fonts/font = SubResource( 2 )
+text = "RESOLUTION:"
+
+[node name="Resolutions" type="OptionButton" parent="OptionsContainer/OptionsMenu/VBoxContainer/Resolutions"]
+margin_left = 154.0
+margin_right = 246.0
+margin_bottom = 32.0
+text = "1280x720"
+flat = true
+
+[node name="Languages" type="HBoxContainer" parent="OptionsContainer/OptionsMenu/VBoxContainer"]
+margin_top = 72.0
+margin_right = 576.0
+margin_bottom = 104.0
+rect_min_size = Vector2( 0, 32 )
+
+[node name="Label" type="Label" parent="OptionsContainer/OptionsMenu/VBoxContainer/Languages"]
+margin_top = 3.0
+margin_right = 150.0
+margin_bottom = 29.0
+rect_min_size = Vector2( 150, 0 )
+custom_fonts/font = SubResource( 2 )
+text = "LANGUAGE:"
+
+[node name="Langs" type="OptionButton" parent="OptionsContainer/OptionsMenu/VBoxContainer/Languages"]
+margin_left = 154.0
+margin_right = 282.0
+margin_bottom = 32.0
+text = "Select language"
+flat = true
+
+[node name="Keys1" type="HBoxContainer" parent="OptionsContainer/OptionsMenu/VBoxContainer"]
+margin_top = 108.0
+margin_right = 576.0
+margin_bottom = 140.0
+rect_min_size = Vector2( 0, 32 )
+custom_constants/separation = 23
+
+[node name="Key UP" type="HBoxContainer" parent="OptionsContainer/OptionsMenu/VBoxContainer/Keys1"]
+margin_right = 276.0
+margin_bottom = 32.0
+
+[node name="Label" type="Label" parent="OptionsContainer/OptionsMenu/VBoxContainer/Keys1/Key UP"]
+margin_top = 3.0
+margin_right = 150.0
+margin_bottom = 29.0
+rect_min_size = Vector2( 150, 0 )
+custom_fonts/font = SubResource( 2 )
+text = "KEY UP:"
+
+[node name="Button" type="Button" parent="OptionsContainer/OptionsMenu/VBoxContainer/Keys1/Key UP"]
+margin_left = 154.0
+margin_right = 276.0
+margin_bottom = 32.0
+custom_fonts/font = SubResource( 2 )
+text = "PRESS KEY"
+
+[node name="Key DOWN" type="HBoxContainer" parent="OptionsContainer/OptionsMenu/VBoxContainer/Keys1"]
+margin_left = 299.0
+margin_right = 575.0
+margin_bottom = 32.0
+
+[node name="Label" type="Label" parent="OptionsContainer/OptionsMenu/VBoxContainer/Keys1/Key DOWN"]
+margin_top = 3.0
+margin_right = 150.0
+margin_bottom = 29.0
+rect_min_size = Vector2( 150, 0 )
+custom_fonts/font = SubResource( 2 )
+text = "KEY DOWN:"
+
+[node name="Button" type="Button" parent="OptionsContainer/OptionsMenu/VBoxContainer/Keys1/Key DOWN"]
+margin_left = 154.0
+margin_right = 276.0
+margin_bottom = 32.0
+custom_fonts/font = SubResource( 2 )
+text = "PRESS KEY"
+
+[node name="Keys2" type="HBoxContainer" parent="OptionsContainer/OptionsMenu/VBoxContainer"]
+margin_top = 144.0
+margin_right = 576.0
+margin_bottom = 176.0
+rect_min_size = Vector2( 0, 32 )
+custom_constants/separation = 23
+
+[node name="Key Left" type="HBoxContainer" parent="OptionsContainer/OptionsMenu/VBoxContainer/Keys2"]
+margin_right = 276.0
+margin_bottom = 32.0
+
+[node name="Label" type="Label" parent="OptionsContainer/OptionsMenu/VBoxContainer/Keys2/Key Left"]
+margin_top = 3.0
+margin_right = 150.0
+margin_bottom = 29.0
+rect_min_size = Vector2( 150, 0 )
+custom_fonts/font = SubResource( 2 )
+text = "KEY LEFT:"
+
+[node name="Button" type="Button" parent="OptionsContainer/OptionsMenu/VBoxContainer/Keys2/Key Left"]
+margin_left = 154.0
+margin_right = 276.0
+margin_bottom = 32.0
+custom_fonts/font = SubResource( 2 )
+text = "PRESS KEY"
+
+[node name="Key Right" type="HBoxContainer" parent="OptionsContainer/OptionsMenu/VBoxContainer/Keys2"]
+margin_left = 299.0
+margin_right = 575.0
+margin_bottom = 32.0
+
+[node name="Label" type="Label" parent="OptionsContainer/OptionsMenu/VBoxContainer/Keys2/Key Right"]
+margin_top = 3.0
+margin_right = 150.0
+margin_bottom = 29.0
+rect_min_size = Vector2( 150, 0 )
+custom_fonts/font = SubResource( 2 )
+text = "KEY RIGHT:"
+
+[node name="Button" type="Button" parent="OptionsContainer/OptionsMenu/VBoxContainer/Keys2/Key Right"]
+margin_left = 154.0
+margin_right = 276.0
+margin_bottom = 32.0
+custom_fonts/font = SubResource( 2 )
+text = "PRESS KEY"
+
+[node name="Keys3" type="HBoxContainer" parent="OptionsContainer/OptionsMenu/VBoxContainer"]
+margin_top = 180.0
+margin_right = 576.0
+margin_bottom = 212.0
+rect_min_size = Vector2( 0, 32 )
+custom_constants/separation = 23
+
+[node name="Key JUMP" type="HBoxContainer" parent="OptionsContainer/OptionsMenu/VBoxContainer/Keys3"]
+margin_right = 276.0
+margin_bottom = 32.0
+
+[node name="Label" type="Label" parent="OptionsContainer/OptionsMenu/VBoxContainer/Keys3/Key JUMP"]
+margin_top = 3.0
+margin_right = 150.0
+margin_bottom = 29.0
+rect_min_size = Vector2( 150, 0 )
+custom_fonts/font = SubResource( 2 )
+text = "KEY JUMP:"
+
+[node name="Button" type="Button" parent="OptionsContainer/OptionsMenu/VBoxContainer/Keys3/Key JUMP"]
+margin_left = 154.0
+margin_right = 276.0
+margin_bottom = 32.0
+custom_fonts/font = SubResource( 2 )
+text = "PRESS KEY"
+
+[node name="Key CROUCH" type="HBoxContainer" parent="OptionsContainer/OptionsMenu/VBoxContainer/Keys3"]
+margin_left = 299.0
+margin_right = 575.0
+margin_bottom = 32.0
+
+[node name="Label" type="Label" parent="OptionsContainer/OptionsMenu/VBoxContainer/Keys3/Key CROUCH"]
+margin_top = 3.0
+margin_right = 150.0
+margin_bottom = 29.0
+rect_min_size = Vector2( 150, 0 )
+custom_fonts/font = SubResource( 2 )
+text = "KEY CROUCH:"
+
+[node name="Button" type="Button" parent="OptionsContainer/OptionsMenu/VBoxContainer/Keys3/Key CROUCH"]
+margin_left = 154.0
+margin_right = 276.0
+margin_bottom = 32.0
+custom_fonts/font = SubResource( 2 )
+text = "PRESS KEY"
+
+[node name="Keys4" type="HBoxContainer" parent="OptionsContainer/OptionsMenu/VBoxContainer"]
+margin_top = 216.0
+margin_right = 576.0
+margin_bottom = 248.0
+rect_min_size = Vector2( 0, 32 )
+custom_constants/separation = 23
+
+[node name="Key SELECT" type="HBoxContainer" parent="OptionsContainer/OptionsMenu/VBoxContainer/Keys4"]
+margin_right = 276.0
+margin_bottom = 32.0
+
+[node name="Label" type="Label" parent="OptionsContainer/OptionsMenu/VBoxContainer/Keys4/Key SELECT"]
+margin_top = 3.0
+margin_right = 150.0
+margin_bottom = 29.0
+rect_min_size = Vector2( 150, 0 )
+custom_fonts/font = SubResource( 2 )
+text = "KEY SELECT:"
+
+[node name="Button" type="Button" parent="OptionsContainer/OptionsMenu/VBoxContainer/Keys4/Key SELECT"]
+margin_left = 154.0
+margin_right = 276.0
+margin_bottom = 32.0
+custom_fonts/font = SubResource( 2 )
+text = "PRESS KEY"
+
+[node name="Key CROUCH" type="HBoxContainer" parent="OptionsContainer/OptionsMenu/VBoxContainer/Keys4"]
+margin_left = 299.0
+margin_right = 575.0
+margin_bottom = 32.0
+
+[node name="Label" type="Label" parent="OptionsContainer/OptionsMenu/VBoxContainer/Keys4/Key CROUCH"]
+margin_top = 3.0
+margin_right = 150.0
+margin_bottom = 29.0
+rect_min_size = Vector2( 150, 0 )
+custom_fonts/font = SubResource( 2 )
+text = "KEY ATTACK:"
+
+[node name="Button" type="Button" parent="OptionsContainer/OptionsMenu/VBoxContainer/Keys4/Key CROUCH"]
+margin_left = 154.0
+margin_right = 276.0
+margin_bottom = 32.0
+custom_fonts/font = SubResource( 2 )
+text = "PRESS KEY"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="OptionsContainer/OptionsMenu"]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 32.0
+margin_top = -64.0
+margin_right = -32.0
+margin_bottom = -32.0
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ApplyChanges" type="Button" parent="OptionsContainer/OptionsMenu/HBoxContainer"]
+margin_left = 201.0
+margin_right = 375.0
+margin_bottom = 32.0
+custom_fonts/font = SubResource( 2 )
+text = "APPLY CHANGES"
+
+[node name="MultiplayerMenu" type="Control" parent="OptionsContainer"]
+margin_right = 640.0
+margin_bottom = 352.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="OptionsContainer/MultiplayerMenu"]
+margin_left = 32.0
+margin_top = 32.0
+margin_right = 608.0
+margin_bottom = 100.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ServerSettings" type="HBoxContainer" parent="OptionsContainer/MultiplayerMenu/VBoxContainer"]
+margin_right = 576.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 0, 32 )
+
+[node name="Label" type="Label" parent="OptionsContainer/MultiplayerMenu/VBoxContainer/ServerSettings"]
+margin_top = 3.0
+margin_right = 184.0
+margin_bottom = 29.0
+rect_min_size = Vector2( 150, 0 )
+custom_fonts/font = SubResource( 2 )
+text = "SERVER SETTINGS"
+
+[node name="MaxPlayers" type="HBoxContainer" parent="OptionsContainer/MultiplayerMenu/VBoxContainer"]
+margin_top = 36.0
+margin_right = 576.0
+margin_bottom = 68.0
+rect_min_size = Vector2( 0, 32 )
+
+[node name="Label" type="Label" parent="OptionsContainer/MultiplayerMenu/VBoxContainer/MaxPlayers"]
+margin_top = 3.0
+margin_right = 150.0
+margin_bottom = 29.0
+rect_min_size = Vector2( 150, 0 )
+custom_fonts/font = SubResource( 2 )
+text = "MAX PLAYERS:"
+
+[node name="Players" type="OptionButton" parent="OptionsContainer/MultiplayerMenu/VBoxContainer/MaxPlayers"]
+margin_left = 154.0
+margin_right = 191.0
+margin_bottom = 32.0
+text = "2"
+flat = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="StartMap" type="HBoxContainer" parent="OptionsContainer/MultiplayerMenu/VBoxContainer"]
+margin_top = 72.0
+margin_right = 576.0
+margin_bottom = 104.0
+rect_min_size = Vector2( 0, 32 )
+
+[node name="Label" type="Label" parent="OptionsContainer/MultiplayerMenu/VBoxContainer/StartMap"]
+margin_top = 3.0
+margin_right = 150.0
+margin_bottom = 29.0
+rect_min_size = Vector2( 150, 0 )
+custom_fonts/font = SubResource( 2 )
+text = "LEVEL NAME:"
+
+[node name="Levels" type="OptionButton" parent="OptionsContainer/MultiplayerMenu/VBoxContainer/StartMap"]
+margin_left = 154.0
+margin_right = 183.0
+margin_bottom = 32.0
+flat = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="OptionsContainer/MultiplayerMenu"]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 32.0
+margin_top = -204.0
+margin_right = -32.0001
+margin_bottom = -172.0
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="StartServer" type="Button" parent="OptionsContainer/MultiplayerMenu/HBoxContainer"]
+margin_left = 207.0
+margin_right = 368.0
+margin_bottom = 32.0
+custom_fonts/font = SubResource( 2 )
+text = "START SERVER"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="OptionsContainer/MultiplayerMenu"]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 32.0
+margin_top = -77.0
+margin_right = -32.0001
+margin_bottom = -45.0
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="JoinServer" type="Button" parent="OptionsContainer/MultiplayerMenu/HBoxContainer2"]
+margin_left = 215.0
+margin_right = 359.0
+margin_bottom = 32.0
+custom_fonts/font = SubResource( 2 )
+text = "JOIN SERVER"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="OptionsContainer/MultiplayerMenu"]
+margin_left = 32.0
+margin_top = 191.0
+margin_right = 608.0
+margin_bottom = 259.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ClientSettings" type="HBoxContainer" parent="OptionsContainer/MultiplayerMenu/VBoxContainer2"]
+margin_right = 576.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 0, 32 )
+
+[node name="Label" type="Label" parent="OptionsContainer/MultiplayerMenu/VBoxContainer2/ClientSettings"]
+margin_top = 3.0
+margin_right = 180.0
+margin_bottom = 29.0
+rect_min_size = Vector2( 150, 0 )
+custom_fonts/font = SubResource( 2 )
+text = "CLIENT SETTINGS"
+
+[node name="ServerIP" type="HBoxContainer" parent="OptionsContainer/MultiplayerMenu/VBoxContainer2"]
+margin_top = 36.0
+margin_right = 576.0
+margin_bottom = 68.0
+rect_min_size = Vector2( 0, 32 )
+
+[node name="Label" type="Label" parent="OptionsContainer/MultiplayerMenu/VBoxContainer2/ServerIP"]
+margin_top = 3.0
+margin_right = 150.0
+margin_bottom = 29.0
+rect_min_size = Vector2( 150, 0 )
+custom_fonts/font = SubResource( 2 )
+text = "SERVER IP:"
+
+[node name="ServerIP" type="TextEdit" parent="OptionsContainer/MultiplayerMenu/VBoxContainer2/ServerIP"]
+margin_left = 154.0
+margin_right = 404.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 250, 0 )
+custom_fonts/font = SubResource( 2 )
+text = "192.168.0.1"
+
+[node name="VersionLabel" type="Label" parent="."]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -180.0
+margin_top = -30.0
+margin_right = -12.0
+margin_bottom = -7.0
+custom_fonts/font = SubResource( 4 )
+text = "..."
+align = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/hide_options = SubResource( 5 )
+anims/show_options = ExtResource( 9 )

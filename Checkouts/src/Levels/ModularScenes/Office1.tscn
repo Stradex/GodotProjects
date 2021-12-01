@@ -1,0 +1,47 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://src/Tiles/game_tiles.tres" type="TileSet" id=1]
+[ext_resource path="res://src/Entities/Misc/Doors/WoodenDoor.tscn" type="PackedScene" id=2]
+
+[node name="Office1" type="Node2D"]
+
+[node name="back_decals1_nonsolid" type="TileMap" parent="."]
+tile_set = ExtResource( 1 )
+collision_layer = 0
+collision_mask = 0
+format = 1
+tile_data = PoolIntArray( 1, 1, 0, 2, 1, 0, 3, 1, 0, 4, 1, 0, 5, 1, 0, 6, 1, 0, 7, 1, 0, 8, 1, 0, 9, 1, 0, 65537, 1, 0, 65538, 1, 0, 65539, 1, 0, 65540, 1, 0, 65541, 1, 0, 65542, 1, 0, 65543, 1, 0, 65544, 1, 0, 65545, 1, 0, 131072, 1, 0, 131073, 1, 0, 131076, 1, 0, 131077, 1, 0, 131078, 1, 0, 131079, 1, 0, 131080, 1, 0, 131081, 1, 0, 131082, 1, 0, 196608, 1, 0, 196609, 1, 0, 196610, 1, 0, 196611, 1, 0, 196612, 1, 0, 196613, 1, 0, 196614, 1, 0, 196615, 1, 0, 196616, 1, 0, 196617, 1, 0, 196618, 1, 0, 262144, 1, 0, 262145, 1, 0, 262146, 1, 0, 262147, 1, 0, 262148, 1, 0, 262149, 1, 0, 262150, 1, 0, 262151, 1, 0, 262152, 1, 0, 262153, 1, 0, 262154, 1, 0, 327680, 1, 0, 327681, 1, 0, 327682, 1, 0, 327683, 1, 0, 327684, 1, 0, 327685, 1, 0, 327686, 1, 0, 327687, 1, 0, 327688, 1, 0, 327689, 1, 0, 327690, 1, 0 )
+
+[node name="back_decals2_nonsolid2" type="TileMap" parent="."]
+tile_set = ExtResource( 1 )
+cell_size = Vector2( 32, 32 )
+collision_layer = 0
+collision_mask = 0
+format = 1
+tile_data = PoolIntArray( 65538, 6, 0, 65540, 6, 0, 65542, 6, 0, 65544, 6, 0, 65546, 6, 0, 65548, 6, 0, 65550, 6, 0, 65552, 6, 0, 65553, 13, 0, 65555, -1610612724, 0, 196625, 12, 0, 327680, 23, 0, 327697, 12, 0, 458760, 60, 0, 458769, 12, 0, 589841, 12, 0 )
+
+[node name="walls_solid" type="TileMap" parent="."]
+tile_set = ExtResource( 1 )
+cell_size = Vector2( 32, 32 )
+collision_layer = 2
+format = 1
+tile_data = PoolIntArray( -65536, 0, 0, -65534, 0, 0, -65532, 0, 0, -65530, 0, 0, -65528, 0, 0, -65526, 0, 0, -65524, 0, 0, -65522, 0, 0, -65520, 0, 0, -65518, 0, 0, -65516, 0, 0, 65536, 0, 0, 65556, 0, 0, 196608, 0, 0, 196628, 0, 0, 720896, 3, 0, 720898, 3, 0, 720900, 3, 0, 720902, 3, 0, 720904, 3, 0, 720906, 3, 0, 720908, 3, 0, 720910, 3, 0, 720912, 3, 0, 720914, 3, 0, 720916, 3, 0 )
+
+[node name="front_decals1_solid" type="TileMap" parent="."]
+tile_set = ExtResource( 1 )
+cell_size = Vector2( 16, 16 )
+collision_layer = 2
+format = 1
+
+[node name="front_decals1_nonsolid" type="TileMap" parent="."]
+tile_set = ExtResource( 1 )
+cell_size = Vector2( 32, 32 )
+collision_layer = 0
+collision_mask = 0
+format = 1
+tile_data = PoolIntArray( 327692, 18, 0, 393220, 8, 0, 393222, 8, 0, 458766, 19, 0 )
+
+[node name="Door" parent="." instance=ExtResource( 2 )]
+position = Vector2( 704, 256 )
+z_index = 1
+manual = false
