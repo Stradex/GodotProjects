@@ -1,0 +1,8 @@
+Este es un juego que creamos con un amigo para empezar 
+a desarrollar videojuegos con un amigo, estamos practicando godot y desarrollo de juegos
+cooperativo, y finalmente posteamos en itch.io
+
+Titulo más grande, que se adapte cuando cambias
+Permitir seleccionar un puerto específico para hotsear para coopear
+Informar cuanto progreso vas del juego
+Color de nave, nombre y disparo unico por cada jugador
